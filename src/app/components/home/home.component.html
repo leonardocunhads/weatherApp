@@ -1,0 +1,69 @@
+<img
+  id="local"
+  style="position: absolute"
+  *ngIf="cityImg"
+  src="{{ cityImg }}"
+  alt=""
+/>
+
+<div class="home-container">
+  <div class="content">
+    <mat-card class="card-container">
+      <mat-card-header>
+        <mat-card-title>
+          <h2>Pesquise o Clima!</h2>
+        </mat-card-title>
+      </mat-card-header>
+      <div class="card-form">
+        <form>
+          <input #city type="text" placeholder="Insira uma Cidade..." />
+        </form>
+        <button mat-fab color="warn" class="btn" (click)="onClick(city.value)">
+          <mat-icon>search</mat-icon>
+        </button>
+      </div>
+      <div *ngIf="errorMessage">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        <span id="errorMessage">{{ errorMessage }} </span>
+      </div>
+    </mat-card>
+    <mat-card *ngIf="cityName" class="card-container">
+      <mat-label style="margin-bottom: 20px">{{
+        todayDate | date : "EE dd, MMM"
+      }}</mat-label>
+      <mat-card-content>
+        <div id="infoLocation">
+          <span id="temp">{{ weatherTemp }}&deg;C</span>
+        </div>
+        <img src="{{ weatherIcon }}" />
+        <div id="infoLocation">
+          <mat-icon id="iconLocation" fontIcon="location_on"> </mat-icon>
+
+          <span style="margin-right: 6px">{{ cityName }}</span>
+
+          <img
+            style="height: 18px"
+            crossorigin="anonymous"
+            src="{{ flagIcon }}"
+            alt="Bandeira do País"
+            id="country"
+          />
+        </div>
+      </mat-card-content>
+    </mat-card>
+    <mat-card *ngIf="cityName" class="card-container">
+      <mat-card-content>
+        <div id="maxmin">
+          <span>{{ weatherTempMax }}&deg;C / {{ weatherTempMin }}&deg;C </span>
+        </div>
+        <div id="humiwind">
+          <i class="fa-solid fa-droplet"></i>
+          <span id="humidity"> {{ weatherHumidity }}</span>
+
+          <i class="fa-solid fa-wind"></i>
+          <span id="wind"> {{ weatherWind }}</span>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
