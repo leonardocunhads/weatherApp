@@ -14,7 +14,7 @@ export class WeatherService {
 
   constructor(private httpClient: HttpClient) {}
 
-  loadData(cityName: string) {
+  async loadData(cityName: string) {
     return this.httpClient.get(
       `${apiUrl}/weather?q=${cityName}&appid=${apiKey}&units=metric`
     );
